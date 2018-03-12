@@ -1,0 +1,11 @@
+pengenalan buku
+	navigasi buku
+	error fix/update
+latihan 1
+	install sotfware
+		windows
+		linux
+latihan 2
+	setup hw
+latihan 3
+	led blink

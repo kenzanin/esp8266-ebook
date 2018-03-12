@@ -1,0 +1,85 @@
+% Template for documenting your Arduino projects
+% Author:   Luis José Salazar-Serrano
+%           totesalaz@gmail.com / luis-jose.salazar@icfo.es
+%           http://opensourcelab.salazarserrano.com
+%%% Template based in the template created by Karol Kozioł (mail@karol-koziol.net)
+
+\def \TITLE     {Blinking LED}
+\def \AUTHOR    {Suka Isnaini, COHERENCE, Kenzanin@gmail.com}
+\def \SUBJECT   {ESP8266}
+\def \KEYWORDS  {Python, Python-PIP, PlatformIO}
+
+\input{../template/header.tex}
+
+\begin{document}
+
+\title{\TITLE}
+
+\author{\AUTHOR}
+
+\date{\today}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Tujuan Percobaan}
+Mengatur nyala mati nya LED yang terhubung ke ESP8266, melalui software.
+
+\section{Hasil yang diharapkan}
+Led menyala selama 1 detik, mati selama 1 detik dan berulang.
+
+\section{Komponen yang digunakan}
+\begin{itemize}
+\item 1 pcs Power supply 5v atau bisa dari USB yang terhubung dengan PC.
+\item 1 pcs LED merah diffused (yang bright bikin sakit mata).
+\item 1 pcs Resistor dengan nilai 1K Ohm.
+\end{itemize}
+
+\section{Circuit}
+Power Supply 5v hanya dibutuhkan jika rangkaian tidak terbubung dengan USB komputer, jika USB terhubung dengan komputer maka sumber tegangan 5V didapatkan langsung dari port USB komputer. Pada percobaan ini LED terhubung dengan ESP8266 melalui R 1K yang bertujuan untuk membatasi arus yang mengalir pada LED. Lebih lengkap nya bisa dilihat pada Figure~\ref{circuit01}.
+
+\section{Warning}
+Jangan sampai terbalik menghubungkan polaritas dari power supply ke ESP8266, kesalahan penyambungan berakibat rusak nya rangkaian ESP8266.
+
+\newpage
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\linewidth]{sch/led_blink_bb}
+\caption{Rangkaian LED Blink.}
+\label{circuit01}
+\end{figure}
+
+\section{Code Description}
+Pada Esp8266 terdapat 16 GPIO yang bisa digunakan baik sebagai input atau sebagai output. Percobaan ini menggunakan GPIO D0 yang disetting sebagai output. Sesuai dengan Figure~\ref{circuit01}\ldots{} maka untuk menyalakan LED, D0 harus berada pada kondisi LOW atau 0, sedang untuk menyalakan LED D0 harus pada kondisi HIGH atau 1. Sedangkan untuk durasi nyala dan mati nya LED menggunakan fungsi wait yang telah disediakan oleh OS (Operating System).
+
+\section{Software Code}
+Pembuatan software diawali dengan setup project dengan cara menjalankan perintah seperti pada Listing~\ref{setup_project_blink}\ldots{} pada terminal.
+\newpage
+\begin{lstlisting}[label=setup_project_blink,caption=Setup project blink,style=bash]
+$ mkdir led_blink
+$ cd led_blink
+$ pio init --ide=codeblocks --board=d1 --project-option "framework=esp8266-rtos-sdk"
+\end{lstlisting}
+
+Jika tidak ada error maka akan terdapat file platfromio.cbp yang merupakan project file untuk codeblocks. Buka platfromio.cbp dengan codeblocks dan buat file baru dengan nama blink.c yang berisi dengan code seperti pada Listing~\ref{blink-main-c}.
+
+\lstinputlisting[label=blink-main-c,style=C++,caption=Pogram utama LED blink]{src/src/blink.c}
+
+Pastikan semua perintah ditulis dengan benar dan build project, jika tidak ada error yang dilaporkan oleh codeblocks maka project bisa diupload ke board dengan menggunakan perintah
+
+\begin{lstlisting}[label=blink-upload,caption=Upload Project ke board,style=bash]
+$ pio --target upload
+\end{lstlisting}
+
+\section{Analisa}
+Pogram Listing~\ref{blink-main-c}\ldots{} pada dasarnya hanya membuat D0 menjadi output, dan memberikan fungsi tunda nyala dan mati pada LED. Perintah untuk membuat D0 menjadi output terdapat pada baris 53 sampai 58, dan untuk fungsi tunda 1 detik terdapat pada baris 64 dan 66.
+
+\section{Pengembangan dan latihan}
+\begin{itemize}
+\item Ganti rangkaian dan pogram untuk D1
+\item Ganti delay dari 1s ke 500ms
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,148 @@
+% Template for documenting your Arduino projects
+% Author:   Luis José Salazar-Serrano
+%           totesalaz@gmail.com / luis-jose.salazar@icfo.es
+%           http://opensourcelab.salazarserrano.com
+%%% Template based in the template created by Karol Kozioł (mail@karol-koziol.net)
+
+\def \TITLE     {PlatformIO }
+\def \AUTHOR    {Suka Isnaini, COHERENCE, Kenzanin@gmail.com}
+\def \SUBJECT   {ESP8266 }
+\def \KEYWORDS  {Python, Python-PIP, PlatformIO}
+
+\input{../template/header.tex}
+
+%macros
+\newcommand{\pio}{PlatformIO}
+\newcommand{\python}{Python}
+
+\begin{document}
+
+\title{\TITLE}
+
+\author{\AUTHOR}
+
+\date{\today}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Tujuan Percobaan}
+\begin{itemize}
+\item Installasi \pio di Linux (Debian 9)
+\item Installasi \pio di Windows (Win7 32bit Ultimate)
+\end{itemize}
+
+\section{Hasil yang diharapkan}
+PlatformIO bisa digunakan untuk
+\begin{itemize}
+\item Generate Poject Codeblocks untuk ESP8266
+\item Compilasi source code
+\item Upload project ke ESP8266
+\end{itemize}
+
+\section{Komponen yang digunakan}
+\begin{itemize}
+\item Internet connection.
+\item Python2.
+\end{itemize}
+
+\section{Sekilas}
+PlatformIO adalah framework yang digunakan untuk mendevelop berbagai jenis micro controller mulai dari AVR, arduino, ARM dan juga ESP series, berbagai kelebihan dari PlatformIO dibanding dengan pure SDK untuk ESP series adalah
+\begin{itemize}
+\item Kemudahan dalam setup berbagai jenis ESP board beberapa jenis diantaranya
+\subitem NodeMCU -> NodeMCU 0.9 (ESP-12 Module).
+\subitem D1 -> WEMOS D1 R1.
+\subitem Espduino -> ESPDuino (ESP-13 Module).
+\subitem Espeino -> ESPino.
+\item Kemudahan dalam pembuatan project diberbagai IDE seperti
+\subitem Atom.
+\subitem Codeblocks -> Yay ini yang kita pakai
+\subitem Vim.
+\subitem QTdevelop.
+\end{itemize}
+Berbagai feature PlatformIO bisa dibaca di situsnya \newline 
+http://docs.platformio.org/en/latest/what-is-platformio.html
+
+\section{Warning}
+Bagi pengguna windows beware, process installasi dan compilasi akan berjalan jauh lebih lambat dibanding di Linux, tidak ada yang salah dengan PC anda hanya OS nya saja hehe.
+
+\newpage
+\section{Langkah Percobaan}
+proses instalasi baik diwindows atau di Linux hampir sama yakni
+\begin{itemize}
+\item Install Python 2.X.
+\item Install Python PIP.
+\item Install PlatformIO.
+\item Install ESP8266 toolchains
+\end{itemize}
+\subsection{Install Python 2.X.}
+Pada linux installasi Python biasanya sudah dilakukan saat pertama kali OS terinstall tapi untuk jika terinstall maka perintah dibawah ini akan menginstall python 2.X pada PC
+\begin{lstlisting}[style=bash]
+$ su
+# apt-get install python2
+\end{lstlisting}
+Pada Windows FIXME
+
+\subsection{Install Python PIP.}
+Python dilengkapi dengan berbagai package yang sudah siap di install dan digunakan. dan PIP digunakan untuk memudahkan proses download dan setup.\newline
+Pada Linux Installasi Python PIP pada linux menggunakan perintah dibawah ini
+\begin{lstlisting}[style=bash]
+$ su
+# apt-get install python2-pip
+\end{lstlisting}
+
+\subsection{Install PlatformIO}
+Installasi PlatformIO baik pada Linux dan Windows difasilitasi oleh Python-pip. Berikut cara install \pio{} buka terminal (pada windows gunakan CMD.EXE)
+\begin{lstlisting}[style=bash]
+$ pip install -U platformio
+\end{lstlisting}
+tunggu sampai proses installasi selesai, jika sudah selesai maka PlatformIO bisadigunakan dengan perintah 
+\begin{lstlisting}[style=bash]
+$ pio
+Usage: pio [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --version          Show the version and exit.
+  -f, --force        Force to accept any confirmation prompts.
+  -c, --caller TEXT  Caller ID (service).
+  -h, --help         Show this message and exit.
+
+Commands:
+  account   Manage PIO Account
+  boards    Embedded Board Explorer
+  ci        Continuous Integration
+  debug     PIO Unified Debugger
+  device    Monitor device or list existing
+  home      PIO Home
+  init      Initialize PlatformIO project or update existing
+  lib       Library Manager
+  platform  Platform Manager
+  remote    PIO Remote
+  run       Process project environments
+  settings  Manage PlatformIO settings
+  test      Local Unit Testing
+  update    Update installed platforms, packages and libraries
+  upgrade   Upgrade PlatformIO to the latest version
+\end{lstlisting}
+Setelah \pio{} terinstall, perlu ditambahkan package untuk ESP8266 dengan cara
+
+\begin{lstlisting}[style=bash]
+$ pio platform install espressif8266
+\end{lstlisting}
+Dengan perintah diatas maka \pio{} akan men-install semua applikasi dasar yang dibutuhkan untuk mendevelop ESP8266, \pio{} akan secara otomatis men-download applikasi lain yang dibutuhkan saat pembuatan project.
+
+\subsection{Test Installasi}
+Untuk memastikan installasi \pio{} sudah benar dapat dilakukan dengan cara membuat project kosong  dengan cara menjalankan perintah dibawah ini pada folder kosong distorage
+\begin{lstlisting}[style=bash]
+$ pio init --ide=codeblocks --board=d1 --project-option "framework=esp8266-rtos-sdk"
+\end{lstlisting}
+Kemungkinan besar \pio{} akan mendownload kekurangan applikasi yang dibutuhkan, dan jika tidak ada error maka pada folder yang sudah dibuat akan muncul beberapa file dan salah satunya adalah "platformio.cbp".
+
+\section{Analisa}
+\pio{} hanya bisa diinstall per-USER base, sehingga perintah pio hanya bisa digunakan untuk user yang menginstall nya jika user lain ingin menggunakan pio maka USER tersebut harus mengulang proses install \pio.
+
+\section{Pengembangan dan latihan}
+\pio{} tidak hanya mendukung ESP8266 namun juga banyak micro-controller lain, pelajari beberapa opsi di \pio{} dan selamat belajar.
+
+\end{document}

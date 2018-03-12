@@ -1,0 +1,83 @@
+% Template for documenting your Arduino projects
+% Author:   Luis José Salazar-Serrano
+%           totesalaz@gmail.com / luis-jose.salazar@icfo.es
+%           http://opensourcelab.salazarserrano.com
+%%% Template based in the template created by Karol Kozioł (mail@karol-koziol.net)
+\def \TITLE     {Installasi Code::Blocks}
+\def \AUTHOR    {Suka Isnaini, COHERENCE, Kenzanin@gmail.com}
+\def \SUBJECT   {ESP8266}
+\def \KEYWORDS  {Python, Python-PIP, PlatformIO}
+
+\input{../template/header.tex}
+
+\begin{document}
+
+\title{\TITLE}
+
+\author{\AUTHOR}
+
+\date{\today}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Tujuan Percobaan}
+\begin{itemize}
+\item Installasi Codeblocks di linux (Debian )
+\item Installasi Codeblocks di windows (win7 32bit ultimate)
+\end{itemize}
+
+\section{Hasil yang diharapkan}
+Applikasi codebloks terinstall dan bisa dijalankan di PC.
+
+\section{Komponen yang digunakan}
+\begin{itemize}
+\item Untuk Linux 
+\subitem internet connections
+\subitem root access
+\item Untuk Windows
+\subitem Internet connections
+\subitem Internet browser
+\subitem Download manager jika ada
+\end{itemize}
+
+\section{Warning}
+Pastikan quota internet anda berada diatas 50MB untuk windwos dan 150MB untuk linux.
+
+\section{Langkah Percobaan}
+\begin{itemize}
+\item Download Codeblocks
+\item Install Codeblocks
+\item Jalankan Codeblocks
+\end{itemize}
+\subsection{Download Codeblocks}
+Untuk Debian Codeblocks sudah tersedia direpository. namun saya sarankan untuk mengupdate package list dengan perintah 
+\begin{lstlisting}[style=bash]
+$ su
+# apt-get update
+\end{lstlisting}
+Untuk windows, Codeblocks harus didownload terlebih dahulu melalui situs
+\newline
+http://www.FIXME.org/
+\subsection{Install Codeblocks}
+Untuk Linux Codeblocks sudah tersedia di repository masing masing dan untuk menginstallnya cukup dengan perintah 
+\begin{lstlisting}[label=install-cb-apt-get,caption=Debian Install Codeblocks,style=bash]
+$ su
+# apt-get install codeblocks codeblocks-contrib
+\end{lstlisting}
+Tekan Y (Yes) jika diminta dan enter maka Debian akan segera mendownload codeblock dari repository dan menginstall nya.
+\newline
+Untuk windows install Codeblock seperti applikasi lainnya.
+\subsection{Jalankan Codeblocks}
+Pada Debian setelah terinstall kamu dapat menggunakan codeblocks dengan mengetik codeblock di terminal dan tekan enter.
+\newline
+Pada Windows codeblocks yang terinstall dapat dibuka di start menu.
+
+\section{Catatan}
+Codeblocks merupakan sebuah IDE yang sangat lengkap untuk mendevelop project yang menggunakan bahasa pemograman C atau C++, Pada buku ini kita tidak menggunakan project generator yang terdapat pada Codeblocks namun pembuatan project dilakukan melalui PlatformIO (pio).
+
+\section{Pengembangan dan latihan}
+Coba buat project baru dengan codeblocks, ada berbagai macam project yang bisa digenerate oleh codeblocks pelajari dan siapa tahu ada banyak hal yang bisa kamu lakukan hehe.
+
+\end{document}
